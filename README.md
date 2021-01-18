@@ -20,9 +20,9 @@ To Repro (UE4.26):
 The issue is in
 UE_4.26\Engine\Source\Runtime\Engine\Private\UnrealEngine.cpp
  line 12926
- else if (WorldContext.PIEInstance != -1 && ((Pending == nullptr) || (Pending->GetDemoNetDriver() != nullptr)))
+ `else if (WorldContext.PIEInstance != -1 && ((Pending == nullptr) || (Pending->GetDemoNetDriver() != nullptr)))`
  
  I believe the line should be 
- else if (WorldContext.PIEInstance != -1 && ((Pending == nullptr) || (Pending->GetNetDriver() != nullptr) || (Pending->GetDemoNetDriver() != nullptr)))
+ `else if (WorldContext.PIEInstance != -1 && ((Pending == nullptr) || (Pending->GetNetDriver() != nullptr) || (Pending->GetDemoNetDriver() != nullptr)))`
  
  Doing that in a source build of the engine works
